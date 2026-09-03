@@ -1,4 +1,4 @@
-import { getCollection } from "astro:content"; /** type CollectionEntry can be added here if draft section is uncommented */
+import { type CollectionEntry, getCollection } from "astro:content"; /** type CollectionEntry can be added here if draft section is uncommented */
 
 /** filter out draft posts based on the environment 
 export async function getAllImagePosts(): Promise<CollectionEntry<"academicPublications">[]> {
@@ -14,7 +14,7 @@ export async function getAllSideProjects(): Promise<CollectionEntry<"sideProject
 	});
 } */
 
-export function toPreviewProps(data: typeof allPublications[number]["data"]) {
+export function toPreviewProps(data: CollectionEntry<"academicPublications">["data"]) {
   const base = {
     title: data.title,
     description: data.description,
