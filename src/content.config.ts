@@ -39,7 +39,7 @@ const post = defineCollection({
 });
 
 const academicPublications = defineCollection({
-	loader: glob({ base: "./src/content/academicPublications", pattern: "**/*.{md,mdx}" }),
+	loader: glob({ base: "./content/academicPublications", pattern: "**/*.{md,mdx}" }),
 	schema: ({ image }) =>
 			z.object({
 			title: z.string(),
