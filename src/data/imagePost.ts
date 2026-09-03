@@ -1,4 +1,4 @@
-import { type getCollection } from "astro:content"; /** CollectionEntry can be added here if draft section is uncommented */
+import { getCollection } from "astro:content"; /** type CollectionEntry can be added here if draft section is uncommented */
 
 /** filter out draft posts based on the environment 
 export async function getAllImagePosts(): Promise<CollectionEntry<"academicPublications">[]> {

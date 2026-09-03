@@ -47,7 +47,10 @@ const latestNotes = allNotes
 			{
 				allPublications.map((pub) => (
 					<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
-						<ImageListPreview post={pub.data} />
+						<ImageListPreview post={{
+						...pub.data,
+						...(pub.data.link ? { link: pub.data.link } : {}),
+					}} />
 					</li>
 				))
 			}
