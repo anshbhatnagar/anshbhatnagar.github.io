@@ -38,6 +38,21 @@ const post = defineCollection({
 		}),
 });
 
+const academicPublications = defineCollection({
+	loader: glob({ base: "./src/content/academicPublications", pattern: "**/*.{md,mdx}" }),
+	schema: ({ image }) =>
+			z.object({
+			title: z.string(),
+			description: z.string(),
+			imageUrl: image(),
+			altText: z.string(),
+			text: z.string(),
+			inProgress: z.boolean().default(false),
+			publishDate: z.string().or(z.date()).transform((val) => new Date(val)).default(new Date()),
+			link: z.string().url().optional(),
+		}),
+});
+
 const note = defineCollection({
 	loader: glob({ base: "./content/notes", pattern: "**/*.{md,mdx}" }),
 	schema: baseSchema.extend({
