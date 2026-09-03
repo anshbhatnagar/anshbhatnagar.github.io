@@ -14,6 +14,24 @@ export async function getAllSideProjects(): Promise<CollectionEntry<"sideProject
 	});
 } */
 
+export function toPreviewProps(data: typeof allPublications[number]["data"]) {
+  const base = {
+    title: data.title,
+    description: data.description,
+    imageUrl: data.imageUrl,
+    altText: data.altText,
+    text: data.text,
+    inProgress: data.inProgress,
+    publishDate: data.publishDate,
+  };
+
+  if (data.link) {
+    return { ...base, link: data.link };
+  }
+
+  return base;
+}
+
 export async function getAllPublications() {
   const publications = await getCollection("academicPublications");
   return publications
