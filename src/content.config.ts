@@ -71,4 +71,4 @@ const tag = defineCollection({
 	}),
 });
 
-export const collections = { post, note, tag };
+export const collections = { academicPublications, post, note, tag };
