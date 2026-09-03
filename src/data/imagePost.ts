@@ -1,11 +1,11 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 
-/** filter out draft posts based on the environment */
+/** filter out draft posts based on the environment 
 export async function getAllImagePosts(): Promise<CollectionEntry<"academicPublications">[]> {
 	return await getCollection("academicPublications", ({ data }) => {
 		return import.meta.env.PROD ? !data.draft : true;
 	});
-}
+}*/
 
 /**  filter out draft posts based on the environment 
 export async function getAllSideProjects(): Promise<CollectionEntry<"sideProjects">[]> {

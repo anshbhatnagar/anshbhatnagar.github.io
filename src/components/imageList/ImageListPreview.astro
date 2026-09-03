@@ -1,0 +1,67 @@
+---
+// src/components/imageList/ImageListPreview.astro
+interface Props {
+  post: {
+    title: string;
+    description: string;
+    imageUrl: { src: string }; // if using local images with `image()`
+    altText: string;
+    text: string;
+    inProgress: boolean;
+    publishDate: Date;
+    link: string;
+  };
+}
+
+
+const { post } = Astro.props;
+---
+
+{!post.inProgress ? (
+  <a
+    href={post.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="group flex flex-col sm:flex-row sm:items-center gap-4 transition-all duration-300 hover:shadow-md"
+  >
+    <div class="overflow-hidden rounded-lg w-full sm:w-40 h-40 sm:h-40 flex-shrink-0">
+      <img
+        src={post.imageUrl.src}
+        alt={post.altText}
+        class="w-full h-full object-cover rounded-lg transform transition-transform duration-300 group-hover:scale-105"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <span class="text-sm text-gray-500">{post.publishDate.toLocaleDateString("en-GB")}</span>
+      <h3 class="font-semibold text-lg text-gray-900 transition-all duration-300 group-hover:underline">
+        {post.title}
+      </h3>
+      <span class="italic text-sb">{post.altText}</span>
+      {post.description && (
+        <p class="text-sm text-gray-700 line-clamp-2">{post.description}</p>
+      )}
+    </div>
+  </a>
+) : (
+  <div class="flex flex-col sm:flex-row sm:items-center gap-4 opacity-80">
+    <div class="overflow-hidden rounded-lg w-full sm:w-40 h-40 sm:h-40 flex-shrink-0">
+      <img
+        src={post.imageUrl.src}
+        alt={post.altText}
+        class="w-full h-full object-cover rounded-lg"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <h3 class="font-semibold text-lg text-gray-900">
+        {post.title}{" "}
+        <span class="text-red-600 font-medium">(In Preparation)</span>
+      </h3>
+      <span class="italic text-sb">{post.altText}</span>
+      {post.description && (
+        <p class="text-sm text-gray-700 line-clamp-2">{post.description}</p>
+      )}
+    </div>
+  </div>
+)}
